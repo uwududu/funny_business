@@ -1,0 +1,28 @@
+# ============================================================
+# Git Ignore - Funny Business / Logs
+# ============================================================
+
+# Dumps e backups SQL (ignora dumps gerados, preserva o schema.sql)
+*.sql
+!log/schema.sql
+!schema.sql
+
+# Bancos de dados locais
+*.db
+*.sqlite
+*.sqlite3
+
+# Arquivos compilados do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de log e testes com dados sensíveis
+*.log
+*dump*.sql
+exemplo_log.txt
+
+# Ambientes virtuais (caso venha a criar venv)
+.venv/
+env/
+venv/
