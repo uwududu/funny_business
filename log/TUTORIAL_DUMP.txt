@@ -1,0 +1,69 @@
+================================================================================
+               TUTORIAL: COMO CRIAR E EXPORTAR O DUMP NO MYSQL
+================================================================================
+
+Todo o projeto agora está unificado em um único arquivo: "traduzir_log.py".
+
+--------------------------------------------------------------------------------
+1. PRÉ-REQUISITO (CONECTOR MYSQL NO PYTHON)
+--------------------------------------------------------------------------------
+Para permitir a comunicação do Python com o seu MySQL, execute no terminal:
+
+   pip install mysql-connector-python
+
+(Ou alternativamente: pip install pymysql)
+
+
+--------------------------------------------------------------------------------
+2. COMO CRIAR O BANCO DE DADOS E TABELAS NO MYSQL
+--------------------------------------------------------------------------------
+OPÇÃO A (Via MySQL Workbench / DBeaver / phpMyAdmin):
+1. Abra o arquivo "schema.sql" localizado na pasta "log".
+2. Execute o script no cliente MySQL. Ele criará o banco `db_logs_teclado` 
+   e a tabela `logs_traduzidos`.
+
+OPÇÃO B (Automático pela Interface do Tradutor):
+- Ao clicar no botão "🗄️ Salvar no MySQL" no app "traduzir_log.py", o próprio
+  programa cria o banco e as tabelas caso ainda não existam.
+
+
+--------------------------------------------------------------------------------
+3. COMO CONFIGURAR A CONEXÃO COM O MYSQL NA INTERFACE
+--------------------------------------------------------------------------------
+1. Abra o aplicativo com duplo clique em "abrir_tradutor.bat" (ou: python traduzir_log.py).
+2. Clique no botão "⚙️ Conexão MySQL".
+3. Insira suas credenciais:
+   - Host: localhost (padrão)
+   - Porta: 3306 (padrão)
+   - Usuário: root (ou seu usuário)
+   - Senha: sua senha do MySQL (se houver)
+   - Banco de Dados: db_logs_teclado
+4. Clique em "Salvar Configuração".
+
+
+--------------------------------------------------------------------------------
+4. COMO GERAR O DUMP COMPLETO DO MYSQL (ESTRUTURA + DADOS)
+--------------------------------------------------------------------------------
+O dump é o arquivo .sql contendo o CREATE DATABASE, CREATE TABLE e todos os
+comandos INSERT com os dados já gravados no MySQL.
+
+MÉTODO 1 (Pela Própria Interface Gráfica - MAIS FÁCIL):
+1. Com o programa aberto, basta clicar no botão:
+   "📦 Exportar Dump .sql"
+2. Escolha onde salvar o arquivo e pronto!
+
+MÉTODO 2 (Pelo Terminal via traduzir_log.py):
+   python traduzir_log.py --dump
+
+MÉTODO 3 (Via utilitário oficial mysqldump do MySQL):
+   mysqldump -u root -p --databases db_logs_teclado > dump_completo_banco.sql
+
+
+--------------------------------------------------------------------------------
+5. COMO RESTAURAR OU IMPORTAR O DUMP EM OUTRO COMPUTADOR
+--------------------------------------------------------------------------------
+Via Prompt de Comando / Terminal:
+   mysql -u root -p < dump_completo_banco.sql
+
+Ou abrindo o arquivo "dump_completo_banco.sql" no MySQL Workbench e executando.
+================================================================================
